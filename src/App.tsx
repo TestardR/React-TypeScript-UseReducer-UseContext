@@ -3,8 +3,7 @@ import { Store } from "./Store";
 
 const App: React.FC = () => {
  
-  // @ts-ignore: Unreachable code error
-  const reducer = (state, action) => {
+  const reducer = (state:number, action:string):number => {
     switch (action) {
       case "ADD":
         return state + 1;
