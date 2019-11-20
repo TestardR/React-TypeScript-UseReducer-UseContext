@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useContext, useReducer } from "react";
+import { Store } from "./Store";
 
 const App: React.FC = () => {
+ 
+  // @ts-ignore: Unreachable code error
+  const reducer = (state, action) => {
+    switch (action) {
+      case "ADD":
+        return state + 1;
+      case "SUB":
+        return state - 1;
+      case "RES":
+        return (state = 0);
+    }
+    return state;
+  };
+
+   // @ts-ignore: Unreachable code error
+   const [count, dispatch] = useReducer(reducer, 0);
+
+  const store = useContext(Store);
+  console.log(store)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <h1>Rick and Morty</h1>
+      <p>Pick your favourite episode !</p>
+      <div>{count}</div>
+      <button onClick={() => dispatch("ADD")}>ADD</button>
+      <button onClick={() => dispatch("SUB")}>SUB</button>
+      <button onClick={() => dispatch("RES")}>RES</button>
+    </Fragment>
   );
-}
+};
 
 export default App;
