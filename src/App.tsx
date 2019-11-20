@@ -2,8 +2,7 @@ import React, { Fragment, useContext, useReducer } from "react";
 import { Store } from "./Store";
 
 const App: React.FC = () => {
- 
-  const reducer = (state:number, action:string):number => {
+  const reducer = (state: number, action: string): number => {
     switch (action) {
       case "ADD":
         return state + 1;
@@ -11,16 +10,17 @@ const App: React.FC = () => {
         return state - 1;
       case "RES":
         return (state = 0);
+      default:
+        return state;
     }
-    return state;
   };
 
-   // @ts-ignore: Unreachable code error
-   const [count, dispatch] = useReducer(reducer, 0);
+  // @ts-ignore: Unreachable code error
+  const [count, dispatch] = useReducer(reducer, 0);
 
   const store = useContext(Store);
-  console.log(store)
-  
+  console.log(store);
+
   return (
     <Fragment>
       <h1>Rick and Morty</h1>
